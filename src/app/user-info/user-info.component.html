@@ -1,0 +1,69 @@
+
+<h2 class="text-center mt-2">User information</h2>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col">
+    
+    <form [formGroup]="userForm">
+        <div class="mb-3">
+        <label class="col-sm-2 col-form-label ml-3">Name:</label>
+        <input [class.is-invalid] = "userForm.controls.Name.invalid && 
+        userForm.controls.Name.touched" formControlName = "Name" type="email" class="form-control inpwidth">
+        <small [class.d-none] = "userForm.controls.Name.valid ||
+        userForm.controls.Name.untouched" class="text-danger">Name is required!</small>
+      </div>  
+
+      <div formGroupName = "address">
+        <div class="mb-3">
+          <label class="col-sm-2 col-form-label" >City:</label>
+          <input formControlName = "city" type="text" class="form-control inpwidth">     
+          </div>
+
+        <div class="mb-3">
+          <label class="col-sm-2 col-form-label" >State:</label>
+          <input formControlName = "state" type="text" class="form-control inpwidth">
+        </div>
+
+        <div class="mb-3">
+          <label class="mt-2" >Postal Code:</label>
+          <input class="mt-5" formControlName = "postalCode" type="text" class="form-control inpwidthpost">
+        </div>
+
+      </div>
+      
+      <div class="mb-3">
+        <label class="col-sm-2 col-form-label" for="email">Email:</label>
+        <input [class.is-invalid] = "userForm.controls.email.invalid && 
+        userForm.controls.email.touched" formControlName = "email" type="text" class="form-control inpwidth">
+        <small [class.d-none] = "userForm.controls.email.valid ||
+        userForm.controls.email.untouched" class="text-danger">Email is required!</small> 
+      </div>
+
+  
+      <button (click)="submitData()" class="btn btn-primary buttonClass" type="submit">Submit</button>
+      <button (click)="getweatherData()" class="btn btn-primary" type="submit">Weather Data</button>
+
+    </form>
+
+    </div>
+
+    <div class="col">
+      <img src="assets/accuracy-and-quality.png">
+    </div>
+
+
+    </div>
+  </div>
+
+  
+  
+
+  <div class="col-md-6" *ngIf = "showWeather">
+    <h3 class="text-center my-4">Weather Details:</h3>
+    <p class="text-center">Humidity: {{weatherData?.current?.humidity}}</p>
+    <p class="text-center">Weather Description: {{weatherData?.current?.weather_descriptions}}</p>
+    <p class="text-center">Temperature in Degrees Farenheit: {{weatherData?.current?.temperature}}</p>
+    <p class="text-center">Wind Speed: {{weatherData?.current?.wind_speed}}</p>
+  </div>
+
+
